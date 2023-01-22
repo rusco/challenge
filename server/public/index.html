@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="favicon.png" sizes="16x16" />
+        <title>Testcases Backend</title>
+        <script src="/vue.global.js"></script>
+        <link href="/index.css" rel="stylesheet" type="text/css" />
+        <script src="index.js" type="module"></script>
+    </head>
+    <body>
+        <main id="challengeapp">
+            <div class="info">{{ info }}</div>
+
+            <span class="wrapper">
+                <div class="box">1. Select testcase</div>
+                <div id="testcase" class="box">
+                    <select v-model="url">
+                        <option v-for="test in endpoints" :value="test.value">{{ test.text }}</option>
+                    </select>
+                    <div>endpoint: {{ url }}</div>
+                </div>
+                <div class="box">2. Execute testcase</div>
+                <div id="testcasebtn" class="box">
+                    <button @click="api(url, 'get' )">GET</button>
+                    <button @click="api(url, 'post')">POST</button>
+                    <button @click="clear">Clear</button>
+                </div>
+
+                <div class="box">3. Analyze result</div>
+                <div id="testcaseresult" class="box">
+                    <textarea class="result">{{result}}</textarea>
+                </div>
+            </span>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="favicon.png" sizes="16x16" />
+        <title>Testcases Backend</title>
+        <script src="/vue.global.js"></script>
+        <link href="/index.css" rel="stylesheet" type="text/css" />
+        <script src="index.js" type="module"></script>
+    </head>
+    <body>
+        <main id="challengeapp">
+            <div class="msg">{{ info }}</div>
+
+            <select v-model="url">
+                <option v-for="test in endpoints" :value="test.value">{{ test.text }}</option>
+            </select>
+            <div>Selected: {{ url }}</div>
+
+            <button @click="api(url, 'get' )">GET</button>
+            <button @click="api(url, 'post')">POST</button>
+            <button @click="clear">Clear</button>
+
+            <span class="wrapper">
+                <div class="box">Testcase</div>
+                <div class="box">Result</div>
+                <div class="box">
+                    dbversion
+                    <a href="#" @click.prevent="api('/api/v1/dbversion', 'get')">GET /api/v1/dbversion</a>
+                    <a href="#" @click.prevent="api('/api/v1/dbversion', 'post')">POST /api/v1/dbversion</a>
+                    <br />
+                    top_zones
+                    <a href="#" @click.prevent="api('/api/v1/top-zones/pickups','get')">GET /api/v1/top-zones/pickups</a>
+                    <a href="#" @click.prevent="api('/api/v1/top-zones/dropoffs','post')">POST /api/v1/top-zones/dropoffs</a>
+                    <a href="#" @click.prevent="api('/api/v1/top-zones/pickups','get')">GET /api/v1/top-zones/pickups</a>
+                    <a href="#" @click.prevent="api('/api/v1/top-zones/dropoffs','post')">POST /api/v1/top-zones/dropoffs</a>
+                    <br />
+                        top_zones (error cases)
+                        <a href="#" @click.prevent="api('/api/v1/errorexample','get')">GET /api/v1/errortest</a>
+                        <a href="#" @click.prevent="api('/api/v1/errorexample','post')">POST /api/v1/errortest</a>
+                        <a href="#" @click.prevent="api('/api/v1/top-zones/errorexamle','get')">GET /api/v1/top-zones/errortest</a>
+                        <a href="#" @click.prevent="api('/api/v1/top-zones/errorexamle','post')">POST /api/v1/top-zones/errortest</a>
+                        <br />
+                        zone_trips
+                        <a href="#" @click.prevent="api('/api/v1/zone-trips/7/2018-01-06','get')">GET /api/v1/zone-trips/7/2018-01-06</a>
+                        <a href="#" @click.prevent="api('/api/v1/zone-trips/7/2018-01-06','post')">POST /api/v1/zone-trips/7/2018-01-06</a>
+                        <br />
+                        zone_trips (error cases)
+                        <a href="#" @click.prevent="api('/api/v1/zone-trips/','get')">GET /api/v1/zone-trips/</a>
+                        <a href="#" @click.prevent="api('/api/v1/zone-trips','get')">GET /api/v1/zone-trips</a>
+                        <a href="#" @click.prevent="api('/api/v1/zone-trips/errortest','get')">GET /api/v1/zone-trips/errortest</a>
+                        <a href="#" @click.prevent="api('/api/v1/zone-trips/7/errortest','post')">POST /api/v1/zone-trips/7/errortest</a>
+                        <br />
+                        list_yellow
+                        <a href="#" @click.prevent="api('/api/v1/list-yellow/limit=100','get')">GET /api/v1/list-yellow/limit=100</a>
+                        <a href="#" @click.prevent="api('/api/v1/list-yellow/limit=100','post')">POST /api/v1/list-yellow/limit=100</a>
+
+                        <a href="#" @click.prevent="api('/api/v1/list-yellow/sort=pu_datetime.asc/sort=pu_locationid.asc','get')"
+                            >GET /api/v1/list-yellow/sort=pu_datetime.asc/sort=pu_locationid.asc</a
+                        >
+                        <a href="#" @click.prevent="api('/api/v1/list-yellow/sort=pu_datetime.asc/sort=pu_locationid.asc','post')"
+                            >POST /api/v1/list-yellow/sort=pu_datetime.asc/sort=pu_locationid.asc</a
+                        >
+                        <a
+                            href="#"
+                            @click.prevent="api('/api/v1/list-yellow/sort=pu_datetime.asc/limit=10/filter=pu_datetime:gt:2018-01-01/sort=pu_locationid.asc/filter=do_locationid:gte:2/offset=1','get')"
+                            >GET
+                            sort=pu_datetime.asc/limit=10/filter=pu_datetime:gt:2018-01-01/sort=pu_locationid.asc/filter=do_locationid:gte:2/offset=1</a
+                        >
+                        <a
+                            href="#"
+                            @click.prevent="api('/api/v1/list-yellow/sort=pu_datetime.asc/limit=10/filter=pu_datetime:gt:2018-01-01/sort=pu_locationid.asc/filter=do_locationid:gte:2/offset=1','post')"
+                            >POST
+                            sort=pu_datetime.asc/limit=10/filter=pu_datetime:gt:2018-01-01/sort=pu_locationid.asc/filter=do_locationid:gte:2/offset=1</a
+                        >
+                        <a href="#" @click.prevent="api('/api/v1/list-yellow/limit=10/offset=10/sort=pu_datetime.desc/sort=pu_locationid.desc','get')"
+                            >GET /api/v1/list-yellow/limit=10/offset=10/sort=pu_datetime.desc/sort=pu_locationid.desc</a
+                        >
+                        <a href="#" @click.prevent="api('/api/v1/list-yellow/limit=10/offset=10/sort=pu_datetime.desc/sort=pu_locationid.desc','post')"
+                            >POST /api/v1/list-yellow/limit=10/offset=10/sort=pu_datetime.desc/sort=pu_locationid.desc</a
+                        >
+                </div>
+                <div class="box">
+                    <textarea class="result">{{result}}</textarea>
+                </div>
+            </span>
+        </main>
+    </body>
+</html>

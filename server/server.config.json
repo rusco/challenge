@@ -1,0 +1,8 @@
+{
+    "_author": "j.rebhan@gmail.com",
+    "_date": "2023-01-22",
+    "_app": "Challenge Server",
+    "logsql": true,
+    "port": 8081,
+    "openlocalbrowser": false
+}
