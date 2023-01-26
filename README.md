@@ -78,30 +78,18 @@ docount AS (
 SELECT *
   FROM pucount
        LEFT JOIN
-       docount ON pucount.pu_locationid = docount.do_locationid-- 
+       docount ON pucount.pu_locationid = docount.do_locationid 
  --ORDER BY pu_total DESC
  ORDER BY do_total DESC
   
  LIMIT 5;
  
  --new zone-trips sql statement v1.1:
-WITH pus AS (
-    SELECT a.pu_locationzone zone,
-           date('2018-01-12') date,
-           count(a.pu_locationid) pu
-      FROM alltrips a
-     WHERE a.pu_locationid = 36 AND 
-           date(a.pu_datetime) = date('2018-01-12') 
-),
-dos AS (
-    SELECT count(a.do_locationid) do_
-      FROM alltrips a
-     WHERE a.do_locationid = 36 AND 
-           date(a.do_datetime) = date('2018-01-12') 
-)
-SELECT *
-  FROM pus,
-       dos;
+SELECT pu_locationzone zone,
+       count(CASE WHEN pu_locationid = 36 AND date(pu_datetime) = date('2018-01-12') THEN 1 END) pu_count,
+       count(CASE WHEN do_locationid = 36 AND date(do_datetime) = date('2018-01-12') THEN 1 END) do_count
+  FROM alltrips;
+	   
 	   
  --list-yellow statement v1.1:
  SELECT pu_datetime,
