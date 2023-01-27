@@ -85,10 +85,10 @@ SELECT *
  LIMIT 5;
  
  --new zone-trips sql statement v1.1:
-SELECT pu_locationzone zone,
-       count(CASE WHEN pu_locationid = 36 AND date(pu_datetime) = date('2018-01-12') THEN 1 END) pu_count,
-       count(CASE WHEN do_locationid = 36 AND date(do_datetime) = date('2018-01-12') THEN 1 END) do_count
-  FROM alltrips;
+  SELECT z.pu_locationzone,
+       count(CASE WHEN a.pu_locationid = 36 AND date(a.pu_datetime) = date('2018-01-12') THEN 1 END) pu_count,
+       count(CASE WHEN a.do_locationid = 36 AND date(a.do_datetime) = date('2018-01-12') THEN 1 END) do_count
+  FROM alltrips a, (SELECT pu_locationzone FROM alltrips WHERE pu_locationid = 36 LIMIT 1) z;
 	   
 	   
  --list-yellow statement v1.1:
