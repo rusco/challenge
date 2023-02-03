@@ -8,8 +8,6 @@ _Loader and Webserver for the Backend challenge according the specification in t
 This package contains 2 deliveries, one each in the folder "loader" and "server".
 Please refer to the README.md files in these folders.
 
-![image](https://user-images.githubusercontent.com/91183/213931562-1fb60caf-f930-4beb-a122-a7e196825fb1.png)
-
 ## Roadmap
 
 For the next version 1.1 significant performance enhancements regarding the sql statements "top-zones" and "zone-trips" are planned. 
