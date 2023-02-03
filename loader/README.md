@@ -37,7 +37,7 @@ go build
 ls
 ```
 
-There should now appear a go binary with the name "loader" or "loader.exe" (windows only). 
+There should now appear a go binary with the name "loader[.exe]"  
 On linux systems make sure the binary is executable:
 
 ```bash
@@ -86,6 +86,4 @@ pi@raspberrypi:~/go/challenge/loader $ ./loader yellow ../data/yellow_tripdata_2
 
 Repeated loading of each dataset is possible, in this case the previous data gets deleted. 
 
-If you encounter any issues please contact the hotline: 
- 
-Jochen Rebhan, j.rebhan@gmail.com
+Have Fun !
