@@ -82,7 +82,4 @@ The last url paramter (starting with /api) should be changed accordingly, exampl
 - '/api/v1/list-yellow/sort=pu_datetime.asc/limit=10/filter=pu_datetime:gt:2018-01-20/sort=pu_locationid.asc/filter=do_locationid:gte:100/offset=30' 
 - '/api/v1/list-yellow/limit=10/offset=10/sort=pu_datetime.desc/sort=pu_locationid.desc' 
 
-
-If you encounter any issues please contact the hotline: 
-
-Jochen Rebhan, j.rebhan@gmail.com
+Have Fun !
